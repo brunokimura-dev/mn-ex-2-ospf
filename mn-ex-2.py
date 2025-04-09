@@ -42,16 +42,16 @@ def config_static_route(net):
         net['s' ].cmdPrint('route add default gw 192.168.2.1')
 
 def set_log(net, node, fname):
-        net[node].cmdPrint('> /workstation/{}.{}'.format(node, fname))
-        net[node].cmdPrint('chmod 666 /workstation/{}.{}'.format(node, fname))
+        net[node].cmdPrint('> ./{}.{}'.format(node, fname))
+        net[node].cmdPrint('chmod 666 ./{}.{}'.format(node, fname))
 
 def set_ospf_router(net, node):
         net[node].cmdPrint('sysctl -w net.ipv4.ip_forward=1')
         set_log(net, node, 'zebra.log')
         set_log(net, node, 'ospf.log')
-        net[node].cmdPrint('zebra -f /workstation/{}.zebra.conf -d -i /tmp/{}.zebra.pid -z /tmp/{}.vty '.format(node, node, node))
+        net[node].cmdPrint('zebra -f ./{}.zebra.conf -d -i /tmp/{}.zebra.pid -z /tmp/{}.vty '.format(node, node, node))
         net[node].cmdPrint('chmod 666 /tmp/{}.vty'.format(node))
-        net[node].cmdPrint('ospfd -f /workstation/{}.ospf.conf -d -i /tmp/{}.ospf.pid -z /tmp/{}.vty '.format(node, node, node))
+        net[node].cmdPrint('ospfd -f ./{}.ospf.conf -d -i /tmp/{}.ospf.pid -z /tmp/{}.vty '.format(node, node, node))
 
 def print_routing_tables(net, stimer):
         for i in range(stimer):
