@@ -54,7 +54,7 @@ sh mininet_run.sh mn-ex-2.py
 
 ---
 
-## ⚙️ Customization
+## Customization
 
 ### Modify OSPF Configuration
 
